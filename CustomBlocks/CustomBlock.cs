@@ -130,14 +130,9 @@ namespace CustomBlocks.CustomBlocks
                 CustomBlock.OriginalBlockCount = c;
 
                 AddBlock<OneRoundWood>();
-                AddBlock<ReCoin>();
-                AddBlock<MultiStart>();
-                AddBlock<RCReceiver>();
-                AddBlock<RCTransmitter>();
                 AddBlock<FloatyCloud>();
-                AddBlock<PigFarmButton>();
-                AddBlock<PigDirt>();
                 AddBlock<ChickenRoll>();
+                AddBlock<ToggleBlockA>();
 
                 Placeable.AllPlaceables = new List<Placeable> { };
 

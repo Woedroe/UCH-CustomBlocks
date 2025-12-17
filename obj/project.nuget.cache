@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "lgq+IHPFM8Q=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\wout\\Documents\\GitHub\\UCH-CustomBlocks\\CustomBlocks.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wout\\.nuget\\packages\\krafs.publicizer\\1.0.1\\krafs.publicizer.1.0.1.nupkg.sha512",
+    "C:\\Users\\wout\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "C:\\Users\\wout\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net48\\1.0.3\\microsoft.netframework.referenceassemblies.net48.1.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

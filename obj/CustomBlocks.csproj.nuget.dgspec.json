@@ -1,0 +1,63 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\wout\\Documents\\GitHub\\UCH-CustomBlocks\\CustomBlocks.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\wout\\Documents\\GitHub\\UCH-CustomBlocks\\CustomBlocks.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\wout\\Documents\\GitHub\\UCH-CustomBlocks\\CustomBlocks.csproj",
+        "projectName": "CustomBlocksMod",
+        "projectPath": "C:\\Users\\wout\\Documents\\GitHub\\UCH-CustomBlocks\\CustomBlocks.csproj",
+        "packagesPath": "C:\\Users\\wout\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\wout\\Documents\\GitHub\\UCH-CustomBlocks\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\wout\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "dependencies": {
+            "Krafs.Publicizer": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

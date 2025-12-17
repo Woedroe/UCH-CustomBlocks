@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!-- steam default: C:\Program Files (x86)\Steam\steamapps\common\Ultimate Chicken Horse\ -->
-    <UCHfolder>C:\Program Files (x86)\Steam\steamapps\common\Ultimate Chicken Horse\</UCHfolder>
+    <UCHfolder>D:\SteamLibrary\steamapps\common\Ultimate Chicken Horse</UCHfolder>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
