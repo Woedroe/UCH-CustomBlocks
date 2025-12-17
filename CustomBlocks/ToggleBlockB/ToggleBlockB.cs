@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace CustomBlocks.CustomBlocks
 {
-    class ToggleBlockA : CustomBlock
+    class ToggleBlockB : CustomBlock
     {
         public override int BasedId { get { return 0; } }
         public override string BasePlaceableName { get { return "01_1x1 Box"; } }
@@ -20,7 +20,6 @@ namespace CustomBlocks.CustomBlocks
             set { StaticId = value; }
         }
 
-        // Array of sprites
         protected Sprite[] sprites = new Sprite[4];
         protected bool spritesLoaded = false;
 
@@ -29,43 +28,39 @@ namespace CustomBlocks.CustomBlocks
             get
             {
                 LoadAllSprites();
-                return sprites[0]; // Return normal sprite for initial setup
+                return sprites[2];
             }
         }
 
         private void LoadAllSprites()
         {
-            if (!spritesLoaded)  // Use your bool flag instead of checking spNormal
+            if (!spritesLoaded)
             {
                 string basePath = CustomBlock.ImageDir;
-                Debug.Log($"[ToggleBlockA] Loading sprites from: {basePath}");
+                Debug.Log($"[ToggleBlockB] Loading sprites from: {basePath}");
                 
-                // Load normal sprite (red) - sprites[0]
-                string path1 = Path.Combine(basePath, "MyCustomBlock.png");
+                string path1 = Path.Combine(basePath, "MyCustomBlockB.png");
                 if (File.Exists(path1))
                 {
                     Texture2D texNormal = LoadTexture(path1);
                     sprites[0] = Sprite.Create(texNormal, new Rect(0, 0, texNormal.width, texNormal.height), new Vector2(0.5f, 0.5f), 100f);
                 }
                 
-                // Load flash sprite (pink) - sprites[1]
-                string path2 = Path.Combine(basePath, "MyCustomBlock-flash.png");
+                string path2 = Path.Combine(basePath, "MyCustomBlockB-flash.png");
                 if (File.Exists(path2))
                 {
                     Texture2D texFlash = LoadTexture(path2);
                     sprites[1] = Sprite.Create(texFlash, new Rect(0, 0, texFlash.width, texFlash.height), new Vector2(0.5f, 0.5f), 100f);
                 }
                 
-                // Load invis sprite (black) - sprites[2]
-                string path3 = Path.Combine(basePath, "MyCustomBlock-invis.png");
+                string path3 = Path.Combine(basePath, "MyCustomBlockB-invis.png");
                 if (File.Exists(path3))
                 {
                     Texture2D texInvis = LoadTexture(path3);
                     sprites[2] = Sprite.Create(texInvis, new Rect(0, 0, texInvis.width, texInvis.height), new Vector2(0.5f, 0.5f), 100f);
                 }
                 
-                // Load invis flash sprite (white) - sprites[3]
-                string path4 = Path.Combine(basePath, "MyCustomBlock-invis-flash.png");
+                string path4 = Path.Combine(basePath, "MyCustomBlockB-invis-flash.png");
                 if (File.Exists(path4))
                 {
                     Texture2D texInvisFlash = LoadTexture(path4);
@@ -76,12 +71,11 @@ namespace CustomBlocks.CustomBlocks
             }
         }
 
-        // Variables for the disappearing behavior
         private float timer = 0f;
         private float interval = 4f;
         private float flashStart = 3f;
         private float flashSpeed = 0.2f;
-        private bool isVisible = true;
+        private bool isVisible = false;
         private bool hasResetThisRound = false;  // NEW
         
         public Vector3 startPosition;
@@ -90,7 +84,7 @@ namespace CustomBlocks.CustomBlocks
         override public PickableBlock CreatePickableBlock()
         {
             PickableBlock pb = base.CreatePickableBlock();
-            pb.transform.localPosition -= new Vector3(15.08f, 20.5f, 1);
+            pb.transform.localPosition -= new Vector3(15.08f, 18.5f, 1);
             pb.transform.localScale = new Vector3(0.75f, 0.75f, 1);
             return pb;
         }
@@ -105,9 +99,9 @@ namespace CustomBlocks.CustomBlocks
         override public void FixSprite(Transform sprite_holder)
         {
             LoadAllSprites();
-            if (sprite_holder && sprites[0] != null)
+            if (sprite_holder && sprites[2] != null)
             {
-                sprite_holder.GetComponent<SpriteRenderer>().sprite = sprites[0];
+                sprite_holder.GetComponent<SpriteRenderer>().sprite = sprites[2];
                 sprite_holder.transform.localScale = new Vector3(2, 2, 1);
                 sprite_holder.transform.localPosition = new Vector3(0f, 0f, 0);
             }
@@ -119,13 +113,13 @@ namespace CustomBlocks.CustomBlocks
             base.OnPlace(placeable, playerNumber, sendEvent, force);
             this.placed = true;
             timer = 0f;
-            isVisible = true;
+            isVisible = false;
             hasResetThisRound = false;  // NEW
             
             startPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             startRotation = transform.rotation;
             
-            Debug.Log("[ToggleBlockA] Block placed! Starting timer.");
+            Debug.Log("[ToggleBlockB] Block placed! Starting timer.");
         }
 
         void Update()
@@ -142,24 +136,24 @@ namespace CustomBlocks.CustomBlocks
                         if (!hasResetThisRound)
                         {
                             timer = 0f;
-                            isVisible = true;
+                            isVisible = false;
                             
                             GameObject solidCollider = transform.Find("SolidCollider")?.gameObject;
-                            if (solidCollider != null) solidCollider.SetActive(true);
+                            if (solidCollider != null) solidCollider.SetActive(false);
                             
                             Transform innerHazard = transform.Find("InnerHazard");
-                            if (innerHazard != null) innerHazard.gameObject.SetActive(true);
+                            if (innerHazard != null) innerHazard.gameObject.SetActive(false);
                             
                             foreach (Collider2D col in GetComponents<Collider2D>())
                             {
-                                col.enabled = true;
+                                col.enabled = false;
                             }
                             
                             SpriteRenderer sr = transform.Find("Sprite")?.GetComponent<SpriteRenderer>();
-                            if (sr != null) sr.sprite = sprites[0];
+                            if (sr != null) sr.sprite = sprites[2];
                             
                             hasResetThisRound = true;
-                            Debug.Log("[ToggleBlockA] Reset for new round!");
+                            Debug.Log("[ToggleBlockB] Reset for new round!");
                         }
                         
                         timer += Time.deltaTime;
@@ -187,7 +181,7 @@ namespace CustomBlocks.CustomBlocks
                             
                             spriteRenderer.sprite = sprites[isVisible ? 0 : 2];
                             
-                            Debug.Log($"[ToggleBlockA] State: {(isVisible ? "SOLID" : "PASS-THROUGH")}");
+                            Debug.Log($"[ToggleBlockB] State: {(isVisible ? "SOLID" : "PASS-THROUGH")}");
                         }
                         else if (timer >= flashStart)
                         {
@@ -212,8 +206,9 @@ namespace CustomBlocks.CustomBlocks
                     {
                         // Not in PLAY phase, reset flag for next round
                         hasResetThisRound = false;
-
-                         if (!isVisible)
+                        
+                        // Reset to visible for build phase (so bombs can destroy it)
+                        if (!isVisible)
                         {
                             isVisible = true;
                             
@@ -229,7 +224,7 @@ namespace CustomBlocks.CustomBlocks
                             }
                             
                             SpriteRenderer sr = transform.Find("Sprite")?.GetComponent<SpriteRenderer>();
-                            if (sr != null) sr.sprite = sprites[0];
+                            if (sr != null) sr.sprite = sprites[0];  // Show solid sprite during build
                         }
                     }
                 }

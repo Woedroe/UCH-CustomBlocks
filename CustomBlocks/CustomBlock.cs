@@ -133,6 +133,7 @@ namespace CustomBlocks.CustomBlocks
                 AddBlock<FloatyCloud>();
                 AddBlock<ChickenRoll>();
                 AddBlock<ToggleBlockA>();
+                AddBlock<ToggleBlockB>();
 
                 Placeable.AllPlaceables = new List<Placeable> { };
 
